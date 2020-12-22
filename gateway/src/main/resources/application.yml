@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: sum-gateway
+
+server:
+  port: 8080
+
+zuul:
+  prefix: /api
+  routes:
+    client:
+      path: /client/**
+      serviceId: sum-client
+    server:
+      path: /server/**
+      serviceId: sum-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    instance:
+      preferIpAddress: true
